@@ -36,15 +36,33 @@ def getprofile_stats(username):
 		print(Fore.RED +"No github profile with the username",username)
 		return ;
 	soup = bs4.BeautifulSoup(res.content,"html.parser")
-	name=soup.find('span',{'class':'p-name vcard-fullname d-block overflow-hidden'}).text
-	username=soup.find('span',{'class':'p-nickname vcard-username d-block'}).text
-	data=soup.find_all('span',{'class':'text-bold text-gray-dark'})
-	location=soup.find('span',{'class':'p-label'}).text
-	stars=data[2].text
-	following=data[1].text
-	followers=data[0].text
-	data=soup.find('span',{'class':'Counter'})
-	repositories=data.text
+	try:
+		name=soup.find('span',{'class':'p-name vcard-fullname d-block overflow-hidden'}).text
+	except:
+		name='Not Available'
+	try:
+		username=soup.find('span',{'class':'p-nickname vcard-username d-block'}).text
+	except:
+		username='Not Available'
+	try:
+		data=soup.find_all('span',{'class':'text-bold text-gray-dark'})
+		stars=data[2].text
+		following=data[1].text
+		followers=data[0].text
+	except:
+		data='Not Available'
+		stars='Not Available'
+		following='Not Available'
+		followers='Not Available'
+	try:
+		location=soup.find('span',{'class':'p-label'}).text
+	except:
+		location='Not Available'
+	try:
+		data=soup.find('span',{'class':'Counter'})
+		repositories=data.text
+	except:
+		repositories='Not Available'
 	profile_data={'name':name,'username':username,'location':location,'stars':stars,'following':following,'followers':followers,'repositories':repositories}
 	print(Fore.BLUE + "\n\n [+] Gitgo scraping profile_data of user \n")
 	print(Fore.GREEN)
@@ -63,8 +81,8 @@ if __name__ == '__main__':
 ░▒▓███▀▒░██░  ▒██▒ ░ ░▒▓███▀▒░ ████▓▒░
  ░▒   ▒ ░▓    ▒ ░░    ░▒   ▒ ░ ▒░▒░▒░ 
   ░   ░  ▒ ░    ░      ░   ░   ░ ▒ ▒░ 
-░ ░   ░  ▒ ░  ░      ░ ░   ░ ░ ░ ░ ▒   > v1.0
-      ░  ░                 ░     ░ ░   > By ankitdobhal , mdb571 , anisha282000
+░ ░   ░  ▒ ░  ░      ░ ░   ░ ░ ░ ░ ▒   
+      ░  ░                 ░     ░ ░   
 ''')
 
 	if args.gitusername:
@@ -75,6 +93,4 @@ if __name__ == '__main__':
   
   
 #   https://www.webnots.com/alt-code-shortcuts-for-block-elements/#:~:text=Hold%20one%20of%20the%20alt,eighths%20block%20symbol%20like%20%E2%96%87.
-  
-#   https://github.com/ankitdobhal/Gitgo
  
