@@ -4,4 +4,4 @@ The Scrapper here takes the github username of the persone and returns the vario
 Corner Cases have been handled.
 Here is a preivew of the same.
 
-![alt text](./console.png)
+![alt text](./console.PNG)
